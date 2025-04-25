@@ -1,0 +1,1 @@
+export * as SchoolController from "./school.controller";
