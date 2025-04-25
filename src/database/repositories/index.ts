@@ -1,0 +1,1 @@
+export * as SchoolRepository from "./school.repository";

@@ -1,0 +1,1 @@
+export * as SchoolService from "./school.service";
