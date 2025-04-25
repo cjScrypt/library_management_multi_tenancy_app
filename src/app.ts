@@ -1,6 +1,13 @@
 import { Express } from "express";
 import { configureDB } from "./database/sequelize";
+import { AppMiddleware } from "./api/middlewares";
 
 export const configureApp = async (app: Express) => {
-    await configureDB(); // Configure database
+    // Configure database
+    await configureDB();
+
+    // Configure app middlewares
+    app.use(AppMiddleware.addCorsHeaderToResponse);
+    app.use(AppMiddleware.addBodyToRequestFromJson);
+    app.use(AppMiddleware.addBodyToRequestFromJson);
 }
