@@ -26,6 +26,8 @@ export const createSchoolSchema = async (schoolId: string) => {
 
         defineModels(schemaName);
 
+        await syncSchemas(schemaName);
+
         return true;
     } catch (error) {
         return false;
@@ -60,4 +62,12 @@ const defineModels = (schemaName: string) => {
         Reservation,
         Student
     });
+}
+
+const syncSchemas = async (schemaName: string) => {
+    const models = schemasRegistry[schemaName];
+
+    for (const model of Object.values(models)) {
+        await model.sync({ force: false});
+    }
 }
