@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { CreateSchoolDto } from "../../types";
-import { SchoolService } from "../../services";
+import { SchoolService, StudentService } from "../../services";
 
 export const registerSchool = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -21,6 +21,18 @@ export const getSchoolById = async (req: Request, res: Response, next: NextFunct
         const school = await SchoolService.getSchoolById(id);
 
         res.status(200).json({ data: school });
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const getStudentsBySchoolId = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+        
+        const students = await StudentService.getStudentsBySchoolId(id);
+
+        res.status(200).json({ data: students });
     } catch (error) {
         next(error);
     }
