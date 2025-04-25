@@ -20,5 +20,6 @@ schoolRouter.get(
 schoolRouter.get(
     "/:id/students",
     AppMiddleware.validateDto(IdParamDto, RequestDataField.PARAM),
+    AppMiddleware.checkSchoolSchema,
     SchoolController.getStudentsBySchoolId
-)
+);

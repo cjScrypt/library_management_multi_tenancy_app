@@ -4,6 +4,7 @@ import { validate } from 'class-validator';
 import cors from "cors";
 import { NextFunction, Request, Response } from "express";
 import { RequestDataField } from '../../types';
+import { SchoolService } from '../../services';
 
 export const addCorsHeaderToResponse = cors();
 export const addBodyToRequestFromJson = json();
@@ -39,5 +40,17 @@ export const validateDto = <T extends object>(
         }
 
         next();
+    }
+}
+
+export const checkSchoolSchema = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const schoolId = req.params.id;
+        await SchoolService.schoolSchemaExists(schoolId);
+
+        next();
+    } catch (error) {
+        console.error(`Error checking schema: ${error}`);
+        next(error);
     }
 }

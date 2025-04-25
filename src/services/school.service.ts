@@ -24,3 +24,12 @@ export const getSchoolById = async (id: string) => {
 
     return school;
 }
+
+export const schoolSchemaExists = async (schoolId: string) => {
+    const schema = await SchoolRepository.getSchoolSchema(schoolId);
+    if (schema.length == 0) {
+        throw new Error(`Schema for school ${schoolId} does not exist`);
+    }
+
+    return true;
+}
