@@ -1,7 +1,17 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "..";
+import { SchoolAttributes, SchoolOmitAttributes } from "../../../types";
 
-export class School extends Model {}
+export class School extends Model<SchoolAttributes, SchoolOmitAttributes> implements SchoolAttributes {
+    id: string;
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    phone: string;
+    email: string;
+}
 
 School.init({
     id: {
@@ -44,4 +54,4 @@ School.init({
 }, {
     sequelize,
     tableName: "schools"
-})
+});
