@@ -1,9 +1,9 @@
 # 📚 Library Management Multi-Tenancy App
+<p>This is a Library Management System that uses multi-tenancy to dynamically create schemas upon school registration.</p>
 
 <h2>API Reference</h2>
-<code>POST /schools/register</code><br>
+<h4><code>POST /schools/register</code></h4><br>
 <p>Register a new school.</p>
-
 
 * Request Body
   ```json
@@ -33,7 +33,7 @@
     }
   ```
 <br>
-<code>GET /schools/:id</code>
+<h4><code>GET /schools/:id</code></h4>
 <p>Retrieve details of a school by ID.</p>
 
 * Response Body
@@ -53,7 +53,7 @@
   ```
 
 <br>
-<code>GET /schools/:id/students</code>
+<h4><code>GET /schools/:id/students</code></h4>
 <p>Retrieve all students associated with a specific school.</p>
 
 * Response Body
