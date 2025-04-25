@@ -25,6 +25,10 @@ export const validateDto = <T extends object>(
             data = req.params;
         }
 
+        if (!data) {
+            data = {}
+        }
+
         const dtoInstance = plainToInstance(dtoClass, data);
 
         const errors = await validate(dtoInstance);
