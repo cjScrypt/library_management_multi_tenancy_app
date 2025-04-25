@@ -1,4 +1,4 @@
-import { SchoolRepository } from "../database/repositories";
+import { SchoolRepository, SchoolSchemaRepository } from "../database/repositories";
 import { CreateSchoolDto } from "../types";
 
 export const registerSchool = async (data: CreateSchoolDto) => {
@@ -8,7 +8,7 @@ export const registerSchool = async (data: CreateSchoolDto) => {
     }
 
     const school = await SchoolRepository.createSchool(data);
-    const success = await SchoolRepository.createSchoolSchema(school.id);
+    const success = await SchoolSchemaRepository.createSchoolSchema(school.id);
     if (!success) {
         console.error(`Failed to create schema for school: ${school.id}`);
     }
@@ -26,7 +26,7 @@ export const getSchoolById = async (id: string) => {
 }
 
 export const schoolSchemaExists = async (schoolId: string) => {
-    const schema = await SchoolRepository.getSchoolSchema(schoolId);
+    const schema = await SchoolSchemaRepository.getSchoolSchema(schoolId);
     if (schema.length == 0) {
         throw new Error(`Schema for school ${schoolId} does not exist`);
     }
