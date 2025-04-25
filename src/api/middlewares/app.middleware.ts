@@ -5,6 +5,7 @@ import cors from "cors";
 import { NextFunction, Request, Response } from "express";
 import { RequestDataField } from '../../types';
 import { SchoolService } from '../../services';
+import { APIValidationError, formatValidationErrors } from '../../utils';
 
 export const addCorsHeaderToResponse = cors();
 export const addBodyToRequestFromJson = json();
@@ -28,7 +29,12 @@ export const validateDto = <T extends object>(
 
         const errors = await validate(dtoInstance);
         if (errors.length > 0) {
-            throw errors;
+            const formattedErrors = formatValidationErrors(errors);
+            throw new APIValidationError(
+                "Validation Error",
+                400,
+                formattedErrors
+            );
         }
 
         if (field === RequestDataField.BODY) {

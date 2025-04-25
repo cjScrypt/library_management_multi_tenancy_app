@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { APIError } from "../../utils";
+import { APIError, APIValidationError } from "../../utils";
 
 export const appErrorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (!err) {
@@ -14,6 +14,9 @@ export const appErrorHandler = (err: Error, req: Request, res: Response, next: N
                 code: err.statusCode,
                 message: err.message
             }
+        }
+        if (err instanceof APIValidationError) {
+            body.error['fields'] = err.fields;
         }
     } else {
         body = {
