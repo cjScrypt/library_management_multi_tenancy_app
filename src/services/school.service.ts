@@ -15,3 +15,12 @@ export const registerSchool = async (data: CreateSchoolDto) => {
 
     return school;
 }
+
+export const getSchoolById = async (id: string) => {
+    const school = await SchoolRepository.findOne({ id });
+    if (!school) {
+        throw new Error("School not found");
+    }
+
+    return school;
+}
