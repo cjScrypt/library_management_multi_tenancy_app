@@ -5,7 +5,7 @@ import {
     defineBook,
     defineBorrowRecord,
     defineReservation,
-    defineUser,
+    defineStudent,
     School
 } from "../sequelize/models";
 
@@ -39,7 +39,7 @@ const defineModels = (schemaName: string) => {
     const Book = defineBook(sequelize, schemaName);
     const BorrowRecord = defineBorrowRecord(sequelize, schemaName);
     const Reservation = defineReservation(sequelize, schemaName);
-    const User = defineUser(sequelize, schemaName);
+    const User = defineStudent(sequelize, schemaName);
 
     Book.hasMany(BorrowRecord);
     BorrowRecord.belongsTo(Book);

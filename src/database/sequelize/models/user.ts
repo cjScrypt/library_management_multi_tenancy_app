@@ -1,7 +1,7 @@
 import { DataTypes, Sequelize } from "sequelize";
 
-export const defineUser = (sequelize: Sequelize, schemaName: string) => {
-    return sequelize.define('User', {
+export const defineStudent = (sequelize: Sequelize, schemaName: string) => {
+    return sequelize.define('Student', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -23,6 +23,6 @@ export const defineUser = (sequelize: Sequelize, schemaName: string) => {
         },
     }, {
         schema: schemaName,
-        tableName: 'user'
+        tableName: 'student'
     });
 }
