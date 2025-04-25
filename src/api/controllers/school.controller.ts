@@ -13,3 +13,15 @@ export const registerSchool = async (req: Request, res: Response, next: NextFunc
         next(error);
     }
 }
+
+export const getSchoolById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id } = req.params;
+
+        const school = await SchoolService.getSchoolById(id);
+
+        res.status(200).json({ data: school });
+    } catch (error) {
+        next(error);
+    }
+}
