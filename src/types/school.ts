@@ -1,4 +1,5 @@
 import { IsString } from "class-validator";
+import { Model } from "sequelize";
 
 export class CreateSchoolDto {
     @IsString()
@@ -23,7 +24,7 @@ export class CreateSchoolDto {
     email: string;
 }
 
-export interface SchoolAttributes {
+export class SchoolType extends Model<SchoolAttributes, SchoolOmitAttributes> implements SchoolAttributes {
     id: string;
     name: string;
     address: string;
@@ -34,6 +35,17 @@ export interface SchoolAttributes {
     email: string;
 }
 
-export interface SchoolOmitAttributes extends Omit<SchoolAttributes, 'id'> {
+interface SchoolAttributes {
+    id: string;
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    phone: string;
+    email: string;
+}
+
+interface SchoolOmitAttributes extends Omit<SchoolAttributes, 'id'> {
     id?: string;
 }

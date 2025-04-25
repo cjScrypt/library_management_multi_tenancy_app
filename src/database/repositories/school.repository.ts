@@ -1,5 +1,9 @@
 import { CreateSchoolDto } from "../../types";
-import { School } from "../sequelize/models";
+import { sequelize } from "../sequelize";
+import { defineSchool } from "../sequelize/models";
+// import { School } from "../sequelize/models";
+
+const School = defineSchool(sequelize);
 
 export const createSchool = async (data: CreateSchoolDto) => {
     return School.create(data);

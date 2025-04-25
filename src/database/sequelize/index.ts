@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import { DATABASE_URL } from "../../config";
-import { School } from "./models";
+import { defineSchool } from "./models";
 import { SchemasRegistry } from "../../types";
 
 export const sequelize = new Sequelize(DATABASE_URL);
@@ -12,7 +12,8 @@ export const configureDB = async () => {
         await sequelize.authenticate();
         console.log("====Database connection successfully====");
 
-        School.sync(); // Synchronize public schema
+        const School = defineSchool(sequelize);
+        School.sync(); // Synchronize Public schema
     } catch (error) {
         console.error(`Error connecting to database: ${error}`);
     }

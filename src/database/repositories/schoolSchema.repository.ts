@@ -3,8 +3,7 @@ import {
     defineBook,
     defineBorrowRecord,
     defineReservation,
-    defineStudent,
-    School
+    defineStudent
 } from "../sequelize/models";
 
 export const getSchoolSchema = async (schoolId: string): Promise<any[]> => {
