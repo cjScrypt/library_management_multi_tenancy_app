@@ -30,7 +30,8 @@ export const createSchoolSchema = async (schoolId: string) => {
 
         return true;
     } catch (error) {
-        return false;
+        throw error;
+        // return false;
     }
 }
 
@@ -57,10 +58,10 @@ const defineModels = (schemaName: string) => {
     Reservation.belongsTo(Student);
 
     Object.assign(schemasRegistry[schemaName], {
+        Student,
         Book,
         BorrowRecord,
-        Reservation,
-        Student
+        Reservation
     });
 }
 
@@ -68,6 +69,6 @@ const syncSchemas = async (schemaName: string) => {
     const models = schemasRegistry[schemaName];
 
     for (const model of Object.values(models)) {
-        await model.sync({ force: false});
+        await model.sync({ });
     }
 }
