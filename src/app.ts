@@ -1,6 +1,7 @@
+import { json, urlencoded } from 'body-parser';
+import cors from "cors";
 import { Express } from "express";
 import { configureDB } from "./database/sequelize";
-import { AppMiddleware } from "./api/middlewares";
 import { schoolRouter } from "./api/routers";
 import { appErrorHandler } from "./api/middlewares/errorHandler";
 
@@ -9,9 +10,10 @@ export const configureApp = async (app: Express) => {
     await configureDB();
 
     // Configure app middlewares
-    app.use(AppMiddleware.addCorsHeaderToResponse);
-    app.use(AppMiddleware.addBodyToRequestFromJson);
-    app.use(AppMiddleware.addBodyToRequestFromJson);
+
+    app.use(json({ limit: "1mb" }));
+    app.use(cors());
+    app.use(urlencoded({ extended: false }));
 
     // Configure app routes
     app.use("/school", schoolRouter);

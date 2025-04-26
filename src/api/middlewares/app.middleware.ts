@@ -1,15 +1,9 @@
-import { json, urlencoded } from 'body-parser';
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import cors from "cors";
 import { NextFunction, Request, Response } from "express";
 import { RequestDataField } from '../../types';
 import { SchoolService } from '../../services';
 import { APIValidationError, formatValidationErrors } from '../../utils';
-
-export const addCorsHeaderToResponse = cors();
-export const addBodyToRequestFromJson = json();
-export const addBodyToRequestFromUrl = urlencoded({ extended: false });
 
 export const validateDto = <T extends object>(
     dtoClass: ClassConstructor<T>,
