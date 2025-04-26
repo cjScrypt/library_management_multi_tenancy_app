@@ -34,3 +34,9 @@ export const schoolSchemaExists = async (schoolId: string) => {
 
     return true;
 }
+
+export const getAllSchools = async () => {
+    const schools = await SchoolRepository.findAll();
+
+    return schools;
+}

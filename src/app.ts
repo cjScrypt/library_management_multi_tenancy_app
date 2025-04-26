@@ -16,7 +16,7 @@ export const configureApp = async (app: Express) => {
     app.use(urlencoded({ extended: false }));
 
     // Configure app routes
-    app.use("/school", schoolRouter);
+    app.use("/schools", schoolRouter);
 
     // Error Handler
     app.use(appErrorHandler);
