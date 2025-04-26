@@ -37,3 +37,13 @@ export const getStudentsBySchoolId = async (req: Request, res: Response, next: N
         next(error);
     }
 }
+
+export const getAllSchools = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const schools = await SchoolService.getAllSchools();
+
+        res.status(200).json({ data: schools });
+    } catch (error) {
+        next(error);
+    }
+}

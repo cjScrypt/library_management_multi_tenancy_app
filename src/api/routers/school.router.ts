@@ -23,3 +23,8 @@ schoolRouter.get(
     AppMiddleware.checkSchoolSchema,
     SchoolController.getStudentsBySchoolId
 );
+
+schoolRouter.get(
+    "/",
+    SchoolController.getAllSchools
+);

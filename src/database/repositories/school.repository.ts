@@ -12,3 +12,7 @@ export const createSchool = async (data: CreateSchoolDto) => {
 export const findOne = async (filter: {}) => {
     return School.findOne({ where: filter });
 }
+
+export const findAll = async () => {
+    return School.findAll();
+}
